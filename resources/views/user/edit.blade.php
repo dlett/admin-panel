@@ -16,9 +16,9 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Edit User: {{ $user->name }}</h3>
+                    <small class="pull-right">Edit the basic information about the user's account.</small>
                 </div>
                 <div class="box-body">
-
 
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Name</label>
@@ -40,6 +40,8 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Reset Password</h3>
+
+                    <small class="pull-right">Reset a user's password. To not reset their password, leave these fields blank.</small>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
@@ -66,6 +68,7 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Out of Character</h3>
+                    <small class="pull-right">Out of character information about the user's account.</small>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
