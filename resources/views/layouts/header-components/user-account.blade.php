@@ -40,7 +40,9 @@
                 <a href="#" class="btn btn-default btn-flat">Profile</a>
             </div>
             <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                {{ Form::open(['url' => '/logout', 'method' => 'post']) }}
+                <input type="submit" href="#" class="btn btn-default btn-flat" value="Sign Out">
+                {{ Form::close() }}
             </div>
         </li>
     </ul>
