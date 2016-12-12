@@ -41,7 +41,9 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Reset Password</h3>
 
-                    <small class="pull-right">Reset a user's password. To not reset their password, leave these fields blank.</small>
+                    <small class="pull-right">Reset a user's password. To not reset their password, leave these fields
+                        blank.
+                    </small>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
@@ -90,13 +92,13 @@
                             <input type="email" id="email" name="email" class="form-control">
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <button class="btn btn-primary">Update User</button>
-                        </div>
+                </div>
+            </div>
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary">Update User</button>
                     </div>
-
                 </div>
             </div>
         </div>

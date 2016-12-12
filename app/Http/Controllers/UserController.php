@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class UserController extends Controller
 {
@@ -59,19 +60,35 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user.edit', compact('user'));
+        $revisions = Activity::forSubject($user)->get();
+
+        return view('user.edit', compact('user', 'revisions'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
-     * @return \Illuminate\Http\Response
+     * @param  User $user
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        // If the administrator entered a password, ensure it matches the password_again
+        // field, if so, set the user's password property to the new password. If not,
+        // return the user to the previous page with an error.
+        if ($request->input('password')) {
+            if ($request->input('password') != $request->input('password_again')) {
+                return redirect("/user/{$user->id}/edit")->with(['password' => 'Password & Password (Again) did not match.']);
+            }
+
+            $user->password = $request->input('password');
+        }
+
+        $user->fill($request->all());
+        $user->save();
+
+        return redirect("/user/{$user->id}/edit")->with(['user_update' => true]);
     }
 
     /**

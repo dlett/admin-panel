@@ -18,6 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('forum_name');
+            $table->string('mta_name');
+            $table->string('time_zone');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -51,6 +51,9 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'forum_name' => 'required|string',
+            'mta_name' => 'required|string',
+            'time_zone' => 'required'
         ]);
     }
 
@@ -62,10 +65,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => $data['password'],
+            'forum_name' => $data['forum_name'],
+            'mta_name' => $data['mta_name'],
+            'time_zone' => $data['time_zone']
         ]);
+
+        activity()->on($user)->log('user registered');
+
+        return $user;
     }
 }
