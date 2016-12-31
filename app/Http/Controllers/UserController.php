@@ -74,6 +74,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        dd($request->all());
         // If the administrator entered a password, ensure it matches the password_again
         // field, if so, set the user's password property to the new password. If not,
         // return the user to the previous page with an error.

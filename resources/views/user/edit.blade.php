@@ -20,18 +20,22 @@
                 </div>
                 <div class="box-body">
 
-                    <div class="form-group">
+                    <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                         <label for="name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" id="name" name="name" class="form-control"
-                                   value="{{ old('name') ?? $user->name }}">
+                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name') ?? $user->name }}">
+
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="email" id="email" name="email" class="form-control"
-                                   value="{{ old('email') ?? $user->email }}">
+                            <input type="email" id="email" name="email" class="form-control" value="{{ old('email') ?? $user->email }}">
                         </div>
                     </div>
 
@@ -103,16 +107,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Notes</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-group">
-                        <textarea class="form-control"></textarea>
-                    </div>
-                </div>
-            </div>
+            <notes></notes>
 
             <div class="box">
                 <div class="box-header with-border">

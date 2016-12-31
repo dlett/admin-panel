@@ -15,7 +15,7 @@ Route::get('/', function () {
     if (\Auth::guard()->guest()) {
         return redirect()->to('/login');
     } else {
-        return redirect()->to('/dashboard');
+        return redirect()->to('/home');
     }
 });
 
