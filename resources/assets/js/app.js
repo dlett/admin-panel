@@ -14,6 +14,7 @@ require('./bootstrap');
  */
 
 Vue.component('notes', require('./components/Notes.vue'));
+Vue.component('revisions', require('./components/Revisions.vue'));
 
 const app = new Vue({
     el: '#app'

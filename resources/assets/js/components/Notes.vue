@@ -8,7 +8,7 @@
             <ul class="products-list product-list-in-box">
                 <li class="item" v-for="note in notes">
                     <div class="product-img">
-                        <img src="bower_components/AdminLTE/dist/img/default-50x50.gif" alt="Product Image">
+                        <img src="http://localhost:8000/bower_components/AdminLTE/dist/img/avatar.png" class="img img-rounded">
                     </div>
                     <div class="product-info">
                         <a href="javascript:void(0)" class="product-title">{{ note.creator.name }}</a>

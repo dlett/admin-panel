@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
@@ -22,7 +23,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -40,6 +41,15 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    /**
+     * The properties of the model of which changes should be logged.
+     *
+     * @var array
+     */
+    protected static $logAttributes = [
+        'name', 'email', 'forum_name', 'mta_name', 'time_zone'
     ];
 
     /**

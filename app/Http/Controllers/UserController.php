@@ -60,7 +60,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $revisions = Activity::forSubject($user)->get();
+        $revisions = Activity::with([
+            'causer' => function ($query) {
+                /** @var \Illuminate\Database\Query\Builder $query */
+                $query->select('name');
+            }
+        ])->forSubject($user)->get();
 
         return view('user.edit', compact('user', 'revisions'));
     }
@@ -74,7 +79,16 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        dd($request->all());
+        $this->validate($request, [
+            'name' => 'required|string|min:3|max:15',
+            'email' => 'required|string|email',
+            'password' => 'sometimes|string',
+            'password_again' => 'sometimes|string',
+            'forum_name' => 'required|string',
+            'mta_name' => 'required|string',
+            'time_zone' => 'required|string' // todo: timezone validation.
+        ]);
+
         // If the administrator entered a password, ensure it matches the password_again
         // field, if so, set the user's password property to the new password. If not,
         // return the user to the previous page with an error.
@@ -84,6 +98,8 @@ class UserController extends Controller
             }
 
             $user->password = $request->input('password');
+
+            activity()->on($user)->by($request->user())->log('updated user password');
         }
 
         $user->fill($request->all());

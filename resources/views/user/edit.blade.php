@@ -51,23 +51,18 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Password</label>
+                        <label for="password" class="col-sm-2 control-label">Password</label>
                         <div class="col-sm-10">
-                            <input type="email" id="email" name="email" class="form-control">
+                            <input type="password" id="password" name="password" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Password (Again)</label>
+                        <label for="password_again" class="col-sm-2 control-label">Password (Again)</label>
                         <div class="col-sm-10">
-                            <input type="email" id="email" name="email" class="form-control">
+                            <input type="password" id="password_again" name="password_again" class="form-control">
                         </div>
                     </div>
-
-                    <div class="form-group">
-
-                    </div>
-
                 </div>
             </div>
 
@@ -78,22 +73,22 @@
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Forum Name</label>
+                        <label for="forum_name" class="col-sm-2 control-label">Forum Name</label>
                         <div class="col-sm-10">
-                            <input type="text" id="name" name="name" class="form-control">
+                            <input type="text" id="forum_name" name="forum_name" class="form-control" value="{{ old('forum_name') ?? $user->forum_name }}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">In-Game Account</label>
+                        <label for="mta_name" class="col-sm-2 control-label">In-Game Account</label>
                         <div class="col-sm-10">
-                            <input type="email" id="email" name="email" class="form-control">
+                            <input type="text" id="mta_name" name="mta_name" class="form-control" value="{{ old('mta_name') ?? $user->mta_name }}">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Time Zone</label>
+                        <label for="time_zone" class="col-sm-2 control-label">Time Zone</label>
                         <div class="col-sm-10">
-                            <input type="email" id="email" name="email" class="form-control">
+                            <input type="text" id="time_zone" name="time_zone" class="form-control" value="{{ old('time_zone') ?? $user->time_zone }}">
                         </div>
                     </div>
                 </div>
@@ -101,38 +96,16 @@
             <div class="box box-primary">
                 <div class="box-body">
                     <div class="col-sm-12">
-                        <button class="btn btn-primary">Update User</button>
+                        <input type="submit" class="btn btn-primary" value="Update User">
                     </div>
                 </div>
             </div>
+            {{ Form::close() }}
         </div>
         <div class="col-md-4">
             <notes></notes>
 
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Revisions</h3>
-                </div>
-                <div class="box-body">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Action</th>
-                            <th>Author</th>
-                            <th>Date</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><a href="">Updated Account</a></td>
-                            <td>Thomas Mengele</td>
-                            <td>Nov. 26 12:56PM</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <revisions items="{{ json_encode($revisions) }}"></revisions>
         </div>
-        {{ Form::close() }}
     </div>
 @endsection
